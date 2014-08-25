@@ -1,5 +1,5 @@
 rm(list=ls())
-setwd('./UCI HAR Dataset/');
+setwd('.');
 features     = read.table('UCI HAR Dataset/features.txt',header=FALSE); #importing features.txt
 activity_type= read.table('UCI HAR Dataset/activity_labels.txt',header=FALSE ); #importing activity_labels.txt
 colnames(activity_type)  = c('activity_id','activity_type');  # Assigin column names to the data imported above
@@ -10,14 +10,14 @@ x_train = read.table("UCI HAR Dataset/train/X_train.txt",header=FALSE)  # readin
 y_train = read.table("UCI HAR Dataset/train/y_train.txt",header=FALSE) # reading y_train.txt 
 
 colnames(activity_type)  = c('activity_id','activity_type');
-colnames(subject_train)  = "subjectId";
+colnames(subject_train)  = "subject_id";
 colnames(x_train)        = features[,2]; 
 colnames(y_train)        = "activity_id";
 
 # merging subject_train and y_train and x_train
 train = cbind(y_train,subject_train,x_train);
 
-subject_test = read.table("UCI HAR Dataset/test/subject_test.txt", col.names=c("subject_id")) # reading subject_test.txt 
+subject_test = read.table("UCI HAR Dataset/test/subject_test.txt") # reading subject_test.txt 
 x_test = read.table("UCI HAR Dataset/test/X_test.txt", header=FALSE)     # read testing data  
 y_test = read.table("UCI HAR Dataset/test/y_test.txt", header=FALSE)  # reading  activity testing data
 
@@ -51,18 +51,18 @@ columnNames  = colnames(data);   # new column names
 # Cleaning up variable names
 for (i in 1:length(columnNames)) 
 {
-  colNames[i] = gsub("\\()","",colNames[i])
-  colNames[i] = gsub("-std$","StdDev",colNames[i])
-  colNames[i] = gsub("-mean","Mean",colNames[i])
-  colNames[i] = gsub("^(t)","time",colNames[i])
-  colNames[i] = gsub("^(f)","freq",colNames[i])
-  colNames[i] = gsub("([Gg]ravity)","Gravity",colNames[i])
-  colNames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)","Body",colNames[i])
-  colNames[i] = gsub("[Gg]yro","Gyro",colNames[i])
-  colNames[i] = gsub("AccMag","AccMagnitude",colNames[i])
-  colNames[i] = gsub("([Bb]odyaccjerkmag)","BodyAccJerkMagnitude",colNames[i])
-  colNames[i] = gsub("JerkMag","JerkMagnitude",colNames[i])
-  colNames[i] = gsub("GyroMag","GyroMagnitude",colNames[i])
+  columnNames[i] = gsub("\\()","",columnNames[i])
+  columnNames[i] = gsub("-std$","StdDev",columnNames[i])
+  columnNames[i] = gsub("-mean","Mean",columnNames[i])
+  columnNames[i] = gsub("^(t)","time",columnNames[i])
+  columnNames[i] = gsub("^(f)","freq",columnNames[i])
+  columnNames[i] = gsub("([Gg]ravity)","Gravity",columnNames[i])
+  columnNames[i] = gsub("([Bb]ody[Bb]ody|[Bb]ody)","Body",columnNames[i])
+  columnNames[i] = gsub("[Gg]yro","Gyro",columnNames[i])
+  columnNames[i] = gsub("AccMag","AccMagnitude",columnNames[i])
+  columnNames[i] = gsub("([Bb]odyaccjerkmag)","BodyAccJerkMagnitude",columnNames[i])
+  columnNames[i] = gsub("JerkMag","JerkMagnitude",columnNames[i])
+  columnNames[i] = gsub("GyroMag","GyroMagnitude",columnNames[i])
 
 };
 
